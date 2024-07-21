@@ -1,0 +1,254 @@
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(to right, #3498db, #9b59b6, #ff69b4, #3498db);
+    background-size: 400% 100%;
+    animation: gradientAnimation 15s linear infinite;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 90vh;
+    padding-top: 5vh;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.container {
+    max-width: 800px;
+    width: 90%;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+form {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 25px 0 0 25px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+button {
+    padding: 12px 25px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.results {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+}
+
+h2, h3 {
+    color: #007BFF;
+    border-bottom: 2px solid #007BFF;
+    padding-bottom: 10px;
+    margin-top: 30px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    background-color: white;
+}
+
+th {
+    background-color: #007BFF;
+    color: white;
+}
+
+tr {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+tr:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.error {
+    background-color: #ffdddd;
+    border-left: 6px solid #f44336;
+    margin-bottom: 15px;
+    padding: 10px;
+    color: #f44336;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.results > * {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Add these new styles */
+.main-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.main-tab-button {
+    padding: 10px 20px;
+    background-color: #29c7f7;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.main-tab-content {
+    display: none;
+}
+
+.main-tab-content.active {
+    display: block;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Webscrap Button Styles */
+.webscrap-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 20px; /* Rounded on all sides */
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.webscrap-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; /* Flat side */
+    height: 100%;
+    background-color: #3498db;
+    border-radius: 20px 0 0 20px; /* Rounded on the right side */
+    z-index: 0;
+}
+
+.webscrap-button span {
+    position: relative;
+    z-index: 1;
+}
+
+.webscrap-button:hover {
+    background-color: #2980b9;
+}
+
+/* Developer Button Styles */
+.developer-button {
+    background-color: #9b59b6;
+    color: white;
+    border: none;
+    border-radius: 20px; /* Rounded on all sides */
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.developer-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; /* Flat side */
+    height: 100%;
+    background-color: #9b59b6;
+    border-radius: 20px 0 0 20px; /* Rounded on the right side */
+    z-index: 0;
+}
+
+.developer-button span {
+    position: relative;
+    z-index: 1;
+}
+
+.developer-button:hover {
+    background-color: #8e44ad;
+}

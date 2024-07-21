@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Web Scraper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylee.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="{{ url_for('static', filename='scriptt.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Web Scraper</h1>
+        
+        <div class="main-tabs">
+            <button class="main-tab-button active" data-tab="scraper">Web Scraper</button>
+            <button class="main-tab-button" data-tab="developer">Developer Info</button>
+        </div>
+
+        <div id="scraper" class="main-tab-content active">
+            <form action="/scrape" method="post" id="scrapeForm">
+                <input type="text" name="url" id="urlInput" placeholder="Enter URL to scrape" required>
+                <button type="submit">Scrape</button>
+            </form>
+
+            <div class="options">
+                <label><input type="checkbox" name="scrape_links" id="scrapeLinks" checked> Scrape Links</label>
+                <label>
+                    Max Depth:
+                    <select name="max_depth" id="maxDepth">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="loading" id="loadingIndicator" style="display: none;">
+                <div class="spinner"></div>
+                <p>Scraping in progress...</p>
+            </div>
+
+            {% if error %}
+                <div class="error">
+                    <p>{{ error }}</p>
+                </div>
+            {% endif %}
+
+            {% if title %}
+                <div class="results">
+                    <h2>{{ title }}</h2>
+
+                    <div class="tabs">
+                        <button class="tab-button active" data-tab="paragraphs">Paragraphs</button>
+                        <button class="tab-button" data-tab="headings">Headings</button>
+                        <button class="tab-button" data-tab="lists">Lists</button>
+                        <button class="tab-button" data-tab="tables">Tables</button>
+                        <button class="tab-button" data-tab="links">Links</button>
+                    </div>
+
+                    <div id="paragraphs" class="tab-content active">
+                        <h3>Paragraphs:</h3>
+                        <ul>
+                            {% for paragraph in paragraphs %}
+                                <li>{{ paragraph }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div id="headings" class="tab-content">
+                        <h3>Headings:</h3>
+                        <ul>
+                            {% for heading in headings %}
+                                <li>{{ heading }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div id="lists" class="tab-content">
+                        <h3>Lists:</h3>
+                        {% for list in lists %}
+                            <ul>
+                                {% for item in list %}
+                                    <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endfor %}
+                    </div>
+
+                    <div id="tables" class="tab-content">
+                        <h3>Tables:</h3>
+                        {% for table in tables %}
+                            <table>
+                                <thead>
+                                    <tr>
+                                        {% for header in table.headers %}
+                                            <th>{{ header }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in table.rows %}
+                                        <tr>
+                                            {% for column in row %}
+                                                <td>{{ column }}</td>
+                                            {% endfor %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endfor %}
+                    </div>
+
+                    <div id="links" class="tab-content">
+                        <h3>Links:</h3>
+                        <ul>
+                            {% for link in links %}
+                                <li><a href="{{ link.href }}" target="_blank">{{ link.text }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <div id="developer" class="main-tab-content hidden">
+            <div class="developer-info">
+                <h2>About the Developer</h2>
+                <p>This Advanced Web Scraper was developed by:</p>
+                <h3>Vijay Patel</h3>
+                <p>Vijay Patel is a passionate developer with a keen interest in web technologies and data extraction. This web scraper project showcases his skills in front-end development, back-end integration, and data processing.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
